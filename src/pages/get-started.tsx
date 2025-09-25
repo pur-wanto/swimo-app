@@ -1,8 +1,11 @@
-import { useNavigate } from 'react-router-dom'
-import BackGround from '../../assets/background.png'
+import { Button } from 'antd';
+import { useNavigate } from 'react-router-dom';
+import BackGround from '../assets/background.png';
+import { useGuestLogin } from '../hooks/mutations/useGuestLogin';
 
 function GetStarted() {
   const navigate = useNavigate();
+  const mutation = useGuestLogin();
 
   return (
     <div className="md:flex md:h-screen">
@@ -23,21 +26,34 @@ function GetStarted() {
           Your data is sent straight to your wear watch to keep yourself accountable.
         </p>
 
-        <div className="mt-8">
-          <button
+        <div className="mt-4">
+          <Button
+            type="primary"
+            size='large'
+            block
             onClick={() => navigate("/sign-up")}
-            type="button"
-            className="w-full bg-blue-400 rounded-md p-3 text-white"
           >
             Sign Up
-          </button>
-          <button
+          </Button>
+          <div className='h-2' />
+          <Button
+            type="primary"
+            size='large'
+            block
+            ghost
             onClick={() => navigate("/login")}
-            type="button"
-            className="w-full rounded-md p-3 text-blue-400 border-blue-400 border mt-4"
           >
             Login
-          </button>
+          </Button>
+        </div>
+
+        <div className='flex justify-center items-center mt-4'>
+          <p
+            onClick={() => mutation.mutate()}
+            className='text-sky-300 hover:text-sky-700 cursor-pointer underline'
+          >
+            Continue as Guest
+          </p>
         </div>
       </div>
     </div>
