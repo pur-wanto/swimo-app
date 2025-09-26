@@ -5,9 +5,15 @@ import type { RegisterFormValues } from '../validations/registerSchema';
 
 export async function loginUser(data: LoginFormValues) {
   const response = await axios.post(`${API_BASE_URL}/api/v1/sign-in`, data);
+  return response.data;
+}
 
 export async function registerUser(data: RegisterFormValues) {
   const response = await axios.post(`${API_BASE_URL}/api/v1/sign-up`, data);
-  
+  return response.data;
+}
+
+export async function loginGuest(data: LoginFormValues) {
+  const response = await axios.post(`${API_BASE_URL}/api/v1/sign-in-guest`);
   return response.data;
 }
