@@ -13,7 +13,7 @@ export async function registerUser(data: RegisterFormValues) {
   return response.data;
 }
 
-export async function loginGuest(data: LoginFormValues) {
-  const response = await axios.post(`${API_BASE_URL}/api/v1/sign-in-guest`);
+export async function loginGuest() {
+  const response = await axios.post(`${API_BASE_URL}/api/v1/sign-in-guest`, {});
   return response.data;
 }
