@@ -8,7 +8,7 @@ export function useLogin() {
 
   return useMutation({
     mutationFn: loginUser,
-    onSuccess: (data) => {
+    onSuccess: () => {
       message.success('Login sukses!');
       navigate("/dashboard");
     },

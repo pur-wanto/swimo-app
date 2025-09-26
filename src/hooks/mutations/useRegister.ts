@@ -8,7 +8,7 @@ export function useRegister() {
 
   return useMutation({
     mutationFn: registerUser,
-    onSuccess: (data) => {
+    onSuccess: () => {
       message.success('Register sukses!');
       navigate("/login")
     },
