@@ -14,6 +14,6 @@ export async function registerUser(data: RegisterFormValues) {
 }
 
 export async function loginGuest() {
-  const response = await axios.post(`${API_BASE_URL}/api/v1/sign-in-guest`, {});
+  const response = await axios.post(`${API_BASE_URL}/api/v1/sign-in-guest`);
   return response.data;
 }
