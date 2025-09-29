@@ -1,15 +1,24 @@
 import { faBell, faPersonSwimming, faSun } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Input, Typography } from 'antd';
+import { useNavigate } from 'react-router-dom';
 import Avatar from "../assets/avatar.png";
-import { Typography } from 'antd';
-import { Input } from 'antd';
 import Recomended from '../components/Recomended';
+import { useAuthStore } from '../store/authStore';
 
 type Props = {}
 
 const { Title } = Typography;
 
 function Dashboard({ }: Props) {
+  const logout = useAuthStore((state) => state.logout);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
+
   return (
     <div className="min-h-screen bg-white px-4 py-6 md:px-8">
 
@@ -24,9 +33,10 @@ function Dashboard({ }: Props) {
         <div className="flex items-center gap-x-4">
           <FontAwesomeIcon icon={faBell} className="text-purple-600 text-xl" />
           <img
+            onClick={handleLogout}
             src={Avatar}
             alt="Avatar"
-            className="w-[40px] h-[40px] object-cover rounded-full"
+            className="w-[40px] h-[40px] object-cover rounded-full cursor-pointer"
           />
         </div>
       </div>

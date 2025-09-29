@@ -4,6 +4,7 @@ import GetStarted from "../pages/get-started";
 import SignUp from "../pages/sign-up";
 import Login from "../pages/login";
 import Dashboard from "../pages/dashboard";
+import ProtectedRoute from "../components/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -23,8 +24,13 @@ const router = createBrowserRouter([
         element: <SignUp />,
       },
       {
-        path: "dashboard",
-        element: <Dashboard />,
+        element: <ProtectedRoute />,
+        children: [
+          {
+            path: "dashboard",
+            element: <Dashboard />,
+          },
+        ],
       },
     ],
   },
