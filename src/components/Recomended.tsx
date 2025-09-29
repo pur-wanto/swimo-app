@@ -2,10 +2,9 @@ import { faBookmark, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Recomended1 from '../assets/recomended-1.png';
 
-type Props = {}
 
-const Recomended = (props: Props) => {
-  const people = [1, 2, 3, 4].map((item, index) => {
+const Recomended = () => {
+  const people = [1, 2, 3, 4].map((index) => {
     return (
       <FontAwesomeIcon
         key={index}

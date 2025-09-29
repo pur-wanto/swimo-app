@@ -2,7 +2,7 @@ import { faBell, faPersonSwimming, faSun } from '@fortawesome/free-solid-svg-ico
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Avatar from "../assets/avatar.png";
 import { Typography } from 'antd';
-import Search from 'antd/es/transfer/search';
+import { Input } from 'antd';
 import Recomended from '../components/Recomended';
 
 type Props = {}
@@ -34,7 +34,7 @@ function Dashboard({ }: Props) {
 
       {/* Search */}
       <div className="mt-6">
-        <Search placeholder="Search" className="w-full max-w-md" />
+        <Input.Search placeholder="Search" className="w-full max-w-md" />
       </div>
 
       {/* Section Spacer */}
@@ -75,7 +75,7 @@ function Dashboard({ }: Props) {
       {/* Mobile: horizontal scroll | Desktop: grid */}
       <div className="mt-4 overflow-x-auto">
         <div className="flex gap-4 md:grid md:grid-cols-3 md:gap-6">
-          {[1, 2, 3, 4, 5].map((item, index) => (
+          {[1, 2, 3, 4, 5].map((index) => (
             <div
               key={index}
               className="min-w-[250px] md:min-w-0 flex-shrink-0"
