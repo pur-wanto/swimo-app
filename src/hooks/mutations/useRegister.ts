@@ -1,19 +1,15 @@
 import { useMutation } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
 import { registerUser } from "../../services/auth.service";
-import { message } from "antd";
+import useAuthStore from "../../store/authStore";
+import type { RegisterFormValues } from "../../validations/registerSchema";
 
 export function useRegister() {
-  const navigate = useNavigate();
+  const login = useAuthStore((state) => state.login)
 
   return useMutation({
-    mutationFn: registerUser,
-    onSuccess: () => {
-      message.success('Register sukses!');
-      navigate("/login")
-    },
-    onError: (error: any) => {
-      message.error(error?.response?.data?.message || 'Register gagal');
+    mutationFn: (data: RegisterFormValues) => registerUser(data),
+    onSuccess: (data) => {
+      login(data)
     },
   });
 }

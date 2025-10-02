@@ -1,12 +1,10 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button, Input, Typography } from 'antd';
+import { Button, Input, notification } from 'antd';
 import { Controller, useForm } from 'react-hook-form';
 
 import { useNavigate } from 'react-router-dom';
 import { useLogin } from '../hooks/mutations/useLogin';
 import { loginSchema, type LoginFormValues } from '../validations/loginSchema';
-
-const { Title } = Typography;
 
 function Login() {
   const navigate = useNavigate();
@@ -27,15 +25,26 @@ function Login() {
   });
 
   const onSubmit = (data: LoginFormValues) => {
-    mutation.mutate(data);
+    mutation.mutate(data, {
+      onSuccess: () => {
+        navigate("/dashboard");
+      },
+      onError: (error: any) => {
+        const message = error?.response?.data?.message || 'Login gagal. Coba lagi.';
+        notification.error({
+          message: 'Login Error',
+          description: message,
+        });
+      }
+    });
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
       <div className="w-full max-w-md p-6 bg-white rounded shadow">
-        <Title level={3} className="text-center mb-6">Login</Title>
+        <h3 className="text-center mb-6">Login</h3>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          <Title level={5}>Email</Title>
+          <h5>Email</h5>
           <Controller
             name="email"
             control={control}
@@ -51,7 +60,7 @@ function Login() {
             <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
           )}
           <div className='mt-1' />
-          <Title level={5}>Password</Title>
+          <h5>Password</h5>
           <Controller
             name="password"
             control={control}
