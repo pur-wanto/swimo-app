@@ -1,12 +1,10 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button, Input, Typography } from 'antd';
+import { Button, Input } from 'antd';
 import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useRegister } from '../hooks/mutations/useRegister';
 import { registerSchema, type RegisterFormValues } from '../validations/registerSchema';
-
-const { Title } = Typography;
 
 const SignUp: React.FC = () => {
   const navigate = useNavigate();
@@ -27,7 +25,7 @@ const SignUp: React.FC = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
       <div className='w-full max-w-md p-6 bg-white rounded shadow'>
-        <Title level={3} className="text-center mb-6">Register</Title>
+        <h3 className="text-center mb-6">Register</h3>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
             <label className="block font-medium mb-1">Full Name</label>
