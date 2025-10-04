@@ -1,7 +1,7 @@
-import { Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import BackGround from '../assets/background.png';
 import { useGuestLogin } from '../hooks/mutations/useGuestLogin';
+import Button from '../components/Button';
 
 function GetStarted() {
   const navigate = useNavigate();
@@ -27,24 +27,9 @@ function GetStarted() {
         </p>
 
         <div className="mt-4">
-          <Button
-            type="primary"
-            size='large'
-            block
-            onClick={() => navigate("/sign-up")}
-          >
-            Sign Up
-          </Button>
+          <Button type='primary' onClick={() => navigate("/sign-up")} title='Sign Up' />
           <div className='h-2' />
-          <Button
-            type="primary"
-            size='large'
-            block
-            ghost
-            onClick={() => navigate("/login")}
-          >
-            Login
-          </Button>
+          <Button type='secondary' onClick={() => navigate("/login")} title='Login' />
         </div>
 
         <div className='flex justify-center items-center mt-4'>
