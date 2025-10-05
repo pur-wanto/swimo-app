@@ -1,5 +1,4 @@
 import { useMutation } from "@tanstack/react-query";
-import { message } from "antd";
 import { loginUser } from "../../services/auth.service";
 import useAuthStore from "../../store/authStore";
 import type { LoginFormValues } from "../../validations/loginSchema";
@@ -13,7 +12,8 @@ export function useLogin() {
       login(data)
     },
     onError: (error: any) => {
-      message.error(error?.response?.data?.message || 'Login gagal');
+      const message = error?.response?.data?.message || 'Login gagal';
+      alert(message)
     },
   });
 }
