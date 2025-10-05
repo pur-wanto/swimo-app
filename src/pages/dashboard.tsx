@@ -1,14 +1,12 @@
-import { faBell, faPersonSwimming, faSun } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Button, Input } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import { Bell, Distance, Search, Sun } from '../assets';
 import Avatar from "../assets/avatar.png";
 import Recomended from '../components/Recomended';
 import useAuthStore from '../store/authStore';
+import { dateNow } from '../utils';
 
-type Props = {}
-
-function Dashboard({ }: Props) {
+function Dashboard() {
+  const user = useAuthStore((state) => state.user);
   const logout = useAuthStore((state) => state.logout);
   const navigate = useNavigate();
 
@@ -21,13 +19,13 @@ function Dashboard({ }: Props) {
     <div className="min-h-screen bg-white px-4 py-6 md:px-8">
       <div className="flex flex-row justify-between items-center flex-wrap gap-4">
         <div>
-          <p className="text-purple-600">
-            <FontAwesomeIcon icon={faSun} /> FRI 14 OCT
-          </p>
-          <h1>Hi, Latade</h1>
+          <div className="flex gap-2 mb-1 text-purple-700">
+            <img src={Sun} /> {dateNow}
+          </div>
+          <h1 className='text-2xl'>Hi, {user?.name}</h1>
         </div>
         <div className="flex items-center gap-x-4">
-          <FontAwesomeIcon icon={faBell} className="text-purple-600 text-xl" />
+          <img src={Bell} />
           <img
             onClick={handleLogout}
             src={Avatar}
@@ -37,17 +35,22 @@ function Dashboard({ }: Props) {
         </div>
       </div>
 
-      <div className="mt-6">
-        <Input.Search placeholder="Search" className="w-full max-w-md" />
+      <div className="mt-6 bg-gray-100 p-4 rounded flex items-center gap-2 w-full">
+        <img src={Search} alt="Search" className="w-4 h-4 text-gray-400" />
+        <input
+          type="text"
+          placeholder="Search"
+          className="bg-transparent outline-none text-gray-700 placeholder-gray-400 w-full"
+        />
       </div>
 
       <div className='h-8' />
 
       <h2>Last Training</h2>
-      <div className='flex flex-col sm:flex-row justify-between bg-blue-50 rounded p-4 items-center w-full gap-y-4 sm:gap-y-0 sm:gap-x-8'>
+      <div className='flex mt-4 flex-col sm:flex-row justify-between bg-blue-50 rounded p-4 items-center w-full gap-y-4 sm:gap-y-0 sm:gap-x-8'>
 
         <div className='text-center flex flex-col items-center'>
-          <FontAwesomeIcon icon={faPersonSwimming} className='text-blue-300 text-4xl' />
+          <img src={Distance} />
           <div className='flex items-baseline gap-2'>
             <h2 className="!mb-0">300</h2>
             <p className='text-gray-400 text-base'>meters</p>
@@ -83,9 +86,9 @@ function Dashboard({ }: Props) {
 
       <div className='h-8' />
 
-      <div className="flex justify-between items-center">
-        <h2 className="!mb-0">Core Stability</h2>
-        <Button type="link">View All</Button>
+      <div className="flex justify-between">
+        <p>Core Stability</p>
+        <p onClick={() => { }}>View All</p>
       </div>
       <div className="mt-4 overflow-x-auto">
         <div className="flex gap-4 md:grid md:grid-cols-3 md:gap-6">
