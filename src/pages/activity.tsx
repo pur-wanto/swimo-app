@@ -1,7 +1,5 @@
 
-type Props = {}
-
-const Activity = (props: Props) => {
+const Activity = () => {
   return (
     <div>Activity</div>
   )
