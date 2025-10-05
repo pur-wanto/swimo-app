@@ -11,7 +11,7 @@ export async function loginUser(data: LoginFormValues): Promise<LoginResponse> {
 
 export async function registerUser(data: RegisterFormValues): Promise<LoginResponse> {
   const response = await axios.post(`${API_BASE_URL}/api/v1/sign-up`, data);
-  return response.data;
+  return response.data.data;
 }
 
 export async function loginGuest(): Promise<LoginResponse> {
