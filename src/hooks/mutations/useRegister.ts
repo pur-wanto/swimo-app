@@ -11,5 +11,9 @@ export function useRegister() {
     onSuccess: (data) => {
       login(data)
     },
+    onError: (error: any) => {
+      const message = error?.response?.data?.message || 'Register gagal';
+      alert(message)
+    },
   });
 }
