@@ -6,7 +6,7 @@ import type { LoginResponse } from '../store/authStore';
 
 export async function loginUser(data: LoginFormValues): Promise<LoginResponse> {
   const response = await axios.post(`${API_BASE_URL}/api/v1/sign-in`, data);
-  return response.data;
+  return response.data.data;
 }
 
 export async function registerUser(data: RegisterFormValues): Promise<LoginResponse> {
@@ -16,5 +16,5 @@ export async function registerUser(data: RegisterFormValues): Promise<LoginRespo
 
 export async function loginGuest(): Promise<LoginResponse> {
   const response = await axios.post(`${API_BASE_URL}/api/v1/sign-in-guest`);
-  return response.data;
+  return response.data.data;
 }
