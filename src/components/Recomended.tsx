@@ -14,7 +14,7 @@ const Recomended = () => {
   });
 
   return (
-    <div className="bg-white rounded shadow overflow-hidden">
+    <div className="bg-white rounded shadow overflow-hidden cursor-pointer hover:shadow-lg transition duration-200">
       <img
         src={Recomended1}
         alt="Recommended"

@@ -16,29 +16,33 @@ interface BottomTabsProps {
 
 const BottomTabs = (props: BottomTabsProps) => {
   const { isActive } = props;
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const tabs = [
     {
-      key: "feed",
+      key: "dashboard",
+      label: "Feed",
       defaultIcon: Feed,
       activeIcon: FeedActive,
       route: "/dashboard",
     },
     {
       key: "activity",
+      label: "Activity",
       defaultIcon: Activity,
       activeIcon: ActivityActive,
       route: "/activity",
     },
     {
       key: "workout",
+      label: "Workout",
       defaultIcon: Workout,
       activeIcon: WorkoutActive,
       route: "/workout",
     },
     {
       key: "setting",
+      label: "Setting",
       defaultIcon: Setting,
       activeIcon: SettingActive,
       route: "/setting",
@@ -46,18 +50,25 @@ const BottomTabs = (props: BottomTabsProps) => {
   ] as const;
 
   return (
-    <div className="flex p-4 border border-gray-100 bg-gray-50 rounded-2xl justify-between md:hidden m-4 ">
+    <div className="flex p-4 border border-gray-100 bg-gray-50 rounded-2xl justify-between md:hidden m-4">
       {tabs.map((tab) => (
-        <img
+        <div
           key={tab.key}
-          src={isActive === tab.key ? tab.activeIcon : tab.defaultIcon}
-          alt={tab.key}
-          className="cursor-pointer"
+          className="flex flex-col items-center cursor-pointer w-full"
           onClick={() => navigate(tab.route)}
-        />
+        >
+          <img
+            src={isActive === tab.key ? tab.activeIcon : tab.defaultIcon}
+            alt={tab.key}
+            className="w-6 h-6"
+          />
+          <p className={`text-xs mt-1 ${isActive === tab.key ? 'text-blue-500 font-medium' : 'text-gray-500'}`}>
+            {tab.label}
+          </p>
+        </div>
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default BottomTabs
+export default BottomTabs;

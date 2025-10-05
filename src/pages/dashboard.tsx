@@ -1,9 +1,10 @@
 import { useNavigate } from 'react-router-dom';
-import { Bell, Distance, Search, Sun } from '../assets';
+import { Bell, Distance, Search, SitUp, Sun } from '../assets';
 import Avatar from "../assets/avatar.png";
 import Recomended from '../components/Recomended';
 import useAuthStore from '../store/authStore';
 import { dateNow } from '../utils';
+import CoreStability from '../components/CoreStability';
 
 function Dashboard() {
   const user = useAuthStore((state) => state.user);
@@ -35,7 +36,7 @@ function Dashboard() {
         </div>
       </div>
 
-      <div className="mt-6 bg-gray-100 p-4 rounded flex items-center gap-2 w-full">
+      <div className="mt-6 bg-gray-100 p-2 sm:p-4 md:p-4 rounded flex items-center gap-2 w-full">
         <img src={Search} alt="Search" className="w-4 h-4 text-gray-400" />
         <input
           type="text"
@@ -45,9 +46,8 @@ function Dashboard() {
       </div>
 
       <div className='h-8' />
-
       <h2>Last Training</h2>
-      <div className='flex mt-4 flex-col sm:flex-row justify-between bg-blue-50 rounded p-4 items-center w-full gap-y-4 sm:gap-y-0 sm:gap-x-8'>
+      <div className='flex mt-4 flex-col sm:flex-row justify-between bg-blue-50 rounded p-4 sm:p-10 md:p-10 items-center w-full gap-y-4 sm:gap-y-0 sm:gap-x-8'>
 
         <div className='text-center flex flex-col items-center'>
           <img src={Distance} />
@@ -69,7 +69,6 @@ function Dashboard() {
       </div>
 
       <div className='h-8' />
-
       <h2>Recommended</h2>
       <div className="mt-4 overflow-x-auto">
         <div className="flex gap-4 md:grid md:grid-cols-3 md:gap-6">
@@ -85,16 +84,25 @@ function Dashboard() {
       </div>
 
       <div className='h-8' />
-
       <div className="flex justify-between">
         <p>Core Stability</p>
         <p onClick={() => { }}>View All</p>
       </div>
-      <div className="mt-4 overflow-x-auto">
-        <div className="flex gap-4 md:grid md:grid-cols-3 md:gap-6">
-
+      <div className="mt-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {[1, 2, 3].map((_, idx) => (
+            <CoreStability
+              key={idx}
+              imgSrc={SitUp}
+              title="Sit Ups"
+              duration="20 mins"
+              desc="Engage in core stability exercises to get your blood pumping."
+              onClick={() => { }}
+            />
+          ))}
         </div>
       </div>
+
 
     </div>
   )

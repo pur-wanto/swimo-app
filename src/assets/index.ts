@@ -1,5 +1,6 @@
 import Avatar from './avatar.png';
 import Background from './background.png';
+import SitUp from './sit-up.png';
 import Logo from './Logo.svg';
 import IconShowPassword from './show-password.svg';
 import IconHidePassword from './hide-password.svg';
@@ -22,6 +23,7 @@ import Setting from './setting.svg';
 export {
   Avatar,
   Background,
+  SitUp,
   Logo,
   IconHidePassword,
   IconShowPassword,
