@@ -1,12 +1,12 @@
 interface ButtonProps {
   title: string;
-  onClick: () => void;
+  onClick?: () => void;
   disabled?: boolean;
   type: 'primary' | 'secondary';
+  htmlType?: 'submit' | 'button';
 }
 
-const Button = (props: ButtonProps) => {
-  const { title, onClick, disabled, type } = props;
+const Button = ({ title, onClick, disabled, type, htmlType = 'button' }: ButtonProps) => {
   const baseClass = 'flex items-center justify-center w-full p-2 rounded-md cursor-pointer'
   const typeClass = type === 'primary'
     ? 'bg-blue-500 hover:bg-blue-400 border border-blue-500 !text-white'
@@ -17,7 +17,8 @@ const Button = (props: ButtonProps) => {
 
   return (
     <button
-      onClick={onClick}
+      type={htmlType}
+      onClick={htmlType === 'submit' ? undefined : onClick}
       className={`${baseClass} ${typeClass} ${disabledClass}`}
     >
       {title}
